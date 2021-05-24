@@ -15,8 +15,39 @@
 	
 	if($pwd==$rpwd) {
 		$hash = password_hash($pwd, PASSWORD_DEFAULT);
-		$rand_no = rand(2000,9999);
-		$sql="INSERT INTO users(user_id,username,pwd,email_id) VALUES ($rand_no,'$uname','$hash','$email')";
+		
+		if(isset($_FILES["file"])){
+			$errors= array();
+
+			$file_name = $_FILES["file"]["name"];
+			$file_size =$_FILES["file"]["size"];
+			$file_tmp =$_FILES["file"]["tmp_name"];
+			$file_type=$_FILES["file"]["type"];
+		
+			$array1=explode('.',$file_name);
+			$file_ext=strtolower(end($array1));
+		
+			$expensions= array("jpeg","jpg","png");
+
+			if(in_array($file_ext,$expensions)=== false){
+				$errors[]="extension not allowed, please choose a JPEG or PNG file";
+			}
+
+			if($file_size> 2097152){
+				$errors[]='File size must be excately 2 MB';
+			}
+			if(empty($errors)===true){
+				$file_name = $uname.".".$file_ext;
+				$uploads_dir = 'profile_imgs/';
+				move_uploaded_file($file_tmp,$uploads_dir.$file_name);
+				$sql="INSERT INTO users(username,pwd,email_id,prof_img) VALUES ('$uname','$hash','$email','$file_name')";
+			}
+			else{
+				print_r($errors);
+			}
+		}
+		else 
+			$sql="INSERT INTO users(username,pwd,email_id) VALUES ('$uname','$hash','$email')";
      		if(mysqli_query($conn,$sql))
 			echo "Signed Up Succesfully";
 		else

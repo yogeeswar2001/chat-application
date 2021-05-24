@@ -4,7 +4,7 @@
 </title>
 </head>
 <body>
-<div float="left">
+<center>
   <h2>LOGIN</h2>
  <form id="login" name="login" action="login.php" id="login" method="post">
  <input type="text" placeholder="username" id="uname" name="uname" required> 
@@ -15,5 +15,6 @@
  <br><br>
  <a href="signup.php">register here</a>
  </form>
+ </center>
 </body>
 </html>

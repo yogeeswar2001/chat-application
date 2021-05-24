@@ -7,13 +7,7 @@
 	mysqli_query($conn,$sql);
 	
 	unset($_SESSION["usr_id"]); 
-	//unset($_SESSION["sender_roll"]); 
-	unset($_SESSION["reciver_roll"]); 
 	session_unset();
-	session_destroy();
-
-//session_start();
-//session_destroy();
 
 	mysqli_close($conn);
 	header("location: index.php");

@@ -11,11 +11,12 @@ html,body {
 	 margin-left:auto;
 	 margin-right:auto;
 	 display:grid;
-	 grid-template-rows: 1fr 4fr 4fr 1fr;
+	 grid-template-rows: 1fr 1fr 4fr 4fr 1fr;
 	 grid-template-columns: 3fr 7fr;
 	 grid-gap:2px;
 	 grid-template-areas:
 		"box1 box3"
+		"box6 box4"
 		"box2 box4"
 		"box2 box4"
 		"box2 box5";
@@ -27,19 +28,29 @@ html,body {
 
  .wrapper .element1 { 
  	grid-area: box1;
+ 	grid-gap:5px;
  	display: grid;
- 	grid-template-columns: 75px 1fr;
+ 	grid-template-columns: 1fr 2fr 2fr;
+ 	grid-template-rows: 1fr 1fr;
  	grid-template-areas:
- 		"box11 box12";
+ 		"box11 box12 box13"
+ 		"box11 box12 box14";
  }
  
  .subelement11 {
  	grid-area: box11;
  }
  
-  .subelement12 {
+ .subelement12 {
  	grid-area:box12;
  	padding: 10px 0px 10px 10px;
+ }
+ 
+  .subelement13 {
+ 	grid-area: box13;
+ }
+  .subelement14 {
+ 	grid-area: box14;
  }
  
  .wrapper .element2 { 
@@ -51,6 +62,7 @@ html,body {
  .wrapper .element3 { 
  	grid-area: box3;
  	display: grid;
+ 	grid-gap:5px;
  	grid-template-columns: 20px 75px 1fr;
  	grid-template-areas:
  		"box31 box32 box33";
@@ -90,6 +102,26 @@ html,body {
  	grid-area: box52;
  }
 
+.wrapper .element6 { 
+	grid-gap:2px;
+ 	grid-area: box6;
+ 	display:grid;
+ 	grid-template-columns: 4fr 1fr 1fr;
+ 	grid-template-areas:
+		"box61 box62 box63";
+ }
+ 
+ .subelement61 {
+ 	grid-area:box61;
+ }
+ 	
+ .subelement62 {
+ 	grid-area: box62;
+ }
+  .subelement63 {
+ 	grid-area:box63;
+ }
+
 .round-img img {
 	border-radius: 50%;
 }
@@ -105,11 +137,16 @@ ul {
 }
 
 .vertical-menu li {
+  border-width:0px 1px 1px 1px;
+  border-style:solid;
+  border-color:black;
+  border-radius:5px;
   background-color: #eee;
-  height:15%;
+  height:1fr;
   color: black;
   display: grid;
   text-decoration: none;
+  grid-gap:5px;
   grid-row: 1;
  	grid-template-columns: 20px 75px 1fr 30px;
  	grid-template-areas:
@@ -125,7 +162,7 @@ ul {
 }
 
 .container {
-  font-size:16px;
+  font-size:18px;
   width: 50%;
   border: 2px solid #dedede;
   background-color: #f1f1f1;
@@ -164,11 +201,12 @@ ul {
 }
 
 .time-right {
-  float: right;
+  font-size:14px;
   color: #aaa;
 }
 
 .time-left {
-  float: left;
+  font-size:14px;
+  float: right;
   color: #999;
 }

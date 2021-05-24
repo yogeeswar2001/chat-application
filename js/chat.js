@@ -1,10 +1,67 @@
-$(document).ready(function(){
-		setInterval("contact_poll()",5000);
+	var contact_poll_id=null;
+	
+	$(document).ready(function(){
+		contact_poll_id = setInterval("contact_poll()",5000);
 	});
 			
 	var timeout_id=0;
 	
+	function exit_search() {
+		contact_poll();
+		//console.log("yogi",contact_poll_id);
+		if(contact_poll_id == null )
+			contact_poll_id = setInterval(contact_poll, 5000);
+		document.getElementById("search").value = "";
+	}
+	
+	function search() {
+		var key = document.getElementById("search").value;
+		
+		if(key == "" && contact_poll_id != null) {
+			exit_search();
+			return;
+		}
+		
+		clearInterval(contact_poll_id);
+		contact_poll_id = null;
+		
+		var datatosend = 'key='+key;
+		
+		$.ajax({
+			url: 'search.php',
+			type: 'POST',
+			data: datatosend,
+			async: true,
+			datatype: 'json',
+			success: function(data) {
+				var parse_data = JSON.parse(data);
+				var contacts_html = "";
+				if(parse_data[0] != "" ) {
+					for( i=0;i<parse_data.length;i++ ) {
+						contacts_html += "<li onclick='oldmsg("+parse_data[i].user_id+")'>";
+						if( parse_data[i].is_active == 0 )
+							contacts_html += "<div class='pelement1' style='background:blue;'></div>";
+						else
+							contacts_html += "<div class='pelement1' style='background:green;'></div>";
+						contacts_html += "<div class='pelement2'><img src='profile_imgs/"+parse_data[i].prof_img+"' style='width:100%;height:100%;'></div><div class='pelement3'><h1>"+parse_data[i].username+"</h1></div>";
+					//if( parse_data[i].msg_count!=null)
+					//	contacts_html += "<div class='pelement4'><h1>"+parse_data[i].msg_count+"</h1></div></li>";
+					}
+					$("#contacts").empty();
+					$("#contacts").append(contacts_html);
+				}
+				else {
+					exit_search();
+				}
+			}
+		});
+	}
+	
 	function oldmsg( receiver_id ) {
+		if(contact_poll_id == null ){
+			exit_search();
+		}
+		
 		document.getElementById('send_button').setAttribute('onclick','sendmsg('+receiver_id+')');
 		console.log(receiver_id,timeout_id,"timeout");
 		
@@ -32,7 +89,7 @@ $(document).ready(function(){
 				
 				for( i=2;i<parse_data.length;i++ ) {
 					if( parse_data[i].sender_id == receiver_id )
-						msg += "<div class='container' style='margin-left:2%;'><img src='profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-rigth'>"+parse_data[i].time+"</span></div>";
+						msg += "<div class='container' style='margin-left:2%;'><img src='profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-right'>"+parse_data[i].time+"</span></div>";
 					if( parse_data[i].sender_id == parse_data[1].user_id)
 						msg += "<div class='container darker' style='margin-left:45%;'><img src='profile_imgs/"+parse_data[1].prof_img+"'  class='right' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-left'>"+parse_data[i].time+"</span></div>";
 				}
@@ -64,7 +121,7 @@ $(document).ready(function(){
 				var parse_data = JSON.parse(data);
 				for( i=2;i<parse_data.length;i++ ) {
 					if( parse_data[i].sender_id == receiver_id )
-						msg += "<div class='container' style='margin-left:2%;'><img src='profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-rigth'>"+parse_data[i].time+"</span></div>";
+						msg += "<div class='container' style='margin-left:2%;'><img src='profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-right'>"+parse_data[i].time+"</span></div>";
 					if( parse_data[i].sender_id == parse_data[1].user_id)
 						msg += "<div class='container darker' style='margin-left:45%;'><img src='profile_imgs/"+parse_data[0].prof_img+"'  class='right' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-left'>"+parse_data[i].time+"</span></div>";
 				}
@@ -99,21 +156,23 @@ $(document).ready(function(){
 			type: 'POST',
 			datatype: 'json',
 			success: function(data) {
-				//console.log(data);
+				//console.log("contact_poll",data);
 				var parse_data = JSON.parse(data);
 				var contacts_html = "";
-				for( i=0;i<parse_data.length;i++ ) {
-					contacts_html += "<li onclick='oldmsg("+parse_data[i].user_id+")'>";
-					if( parse_data[i].is_active == 0 )
-						contacts_html += "<div class='pelement1' style='background:blue;'></div>";
-					else
-						contacts_html += "<div class='pelement1' style='background:green;'></div>";
-					contacts_html += "<div class='pelement2'><img src='profile_imgs/"+parse_data[i].prof_img+"' style='width:100%;height:100%;'></div><div class='pelement3'><h1>"+parse_data[i].username+"</h1></div>";
-					if( parse_data[i].msg_count!=null)
-					contacts_html += "<div class='pelement4'><h1>"+parse_data[i].msg_count+"</h1></div></li>";
+				if( parse_data[0] != "" ) {
+					for( i=0;i<parse_data.length;i++ ) {
+						contacts_html += "<li onclick='oldmsg("+parse_data[i].user_id+")'>";
+						if( parse_data[i].is_active == 0 )
+							contacts_html += "<div class='pelement1' style='background:blue;'></div>";
+						else
+							contacts_html += "<div class='pelement1' style='background:green;'></div>";
+						contacts_html += "<div class='pelement2'><img src='profile_imgs/"+parse_data[i].prof_img+"' style='width:100%;height:100%;'></div><div class='pelement3'><h1>"+parse_data[i].username+"</h1></div>";
+						if( parse_data[i].msg_count!=null)
+						contacts_html += "<div class='pelement4'><h1>"+parse_data[i].msg_count+"</h1></div></li>";
+					}
+					$("#contacts").empty();
+					$("#contacts").append(contacts_html);
 				}
-				$("#contacts").empty();
-				$("#contacts").append(contacts_html);
 			},
 			complete:function(data) {
 				//setTimeout(contact_poll,5000);
