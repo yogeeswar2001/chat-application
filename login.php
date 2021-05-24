@@ -18,7 +18,7 @@
 			$_SESSION["usr_id"]=$row["user_id"];
 			$sql="update users set is_active=1 where user_id=\"".$_SESSION["usr_id"]."\"";
 			mysqli_query($conn,$sql);
-			header("location:profile.php");
+			header("location:chat.php");
 		}
 		else
 			echo "<h1>username and password dose not match<h1>";
