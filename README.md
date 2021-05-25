@@ -53,10 +53,11 @@ This works based on polling, every 5 seconds it checks for new message in databa
   ```
 - Open the browser and type localhost in the url
 
-#### Follow the steps Mysql
-- Create a database, the use the [sql file](https://github.com/yogeeswar2001/chat-application/blob/main/db/chat_app.sql) to import the database
+#### Follow the steps to create database with MySQL
+- Create a database, the use the [chat_App.sql](https://github.com/yogeeswar2001/chat-application/blob/main/db/chat_app.sql) to import the database
   ```
   create database database_name
   use database_name
   source path_to_sql_sorce_file
   ```
+- Change the $username, $pwd, $db in [db_conn.php](https://github.com/yogeeswar2001/chat-application/blob/main/db_conn.php)

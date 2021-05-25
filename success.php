@@ -42,7 +42,7 @@
 				if(empty($errors)===true){
 				    //echo "<h1>hollo</h1>";
 					$file_name = $uname.".".$file_ext;
-					$uploads_dir = 'profile_imgs/';
+					$uploads_dir = 'img/profile_imgs/';
 					move_uploaded_file($file_tmp,$uploads_dir.$file_name);
 					$sql="INSERT INTO users(username,pwd,email_id,prof_img) VALUES ('$uname','$hash','$email','$file_name')";
 				}
