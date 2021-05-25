@@ -43,7 +43,7 @@
 							contacts_html += "<div class='pelement1' style='background:blue;'></div>";
 						else
 							contacts_html += "<div class='pelement1' style='background:green;'></div>";
-						contacts_html += "<div class='pelement2'><img src='profile_imgs/"+parse_data[i].prof_img+"' style='width:100%;height:100%;'></div><div class='pelement3'><h1>"+parse_data[i].username+"</h1></div>";
+						contacts_html += "<div class='pelement2'><img src='img/profile_imgs/"+parse_data[i].prof_img+"' style='width:100%;height:100%;'></div><div class='pelement3'><h1>"+parse_data[i].username+"</h1></div>";
 					//if( parse_data[i].msg_count!=null)
 					//	contacts_html += "<div class='pelement4'><h1>"+parse_data[i].msg_count+"</h1></div></li>";
 					}
@@ -81,7 +81,7 @@
 					box3_html += "<div class='subelement31' style='background:blue'></div>";
 				else
 					box3_html += "<div class='subelement31' style='background:green'></div>";
-				box3_html += "<div class='subelement32 round-img'><img src='profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;height:100%;'></div><div class='subelement33'><h1>"+parse_data[0].username+"</h1>";
+				box3_html += "<div class='subelement32 round-img'><img src='img/profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;height:100%;'></div><div class='subelement33'><h1>"+parse_data[0].username+"</h1>";
 				$("#box3").empty();
 				$("#box3").append(box3_html);
 				
@@ -89,9 +89,9 @@
 				
 				for( i=2;i<parse_data.length;i++ ) {
 					if( parse_data[i].sender_id == receiver_id )
-						msg += "<div class='container' style='margin-left:2%;'><img src='profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-right'>"+parse_data[i].time+"</span></div>";
+						msg += "<div class='container' style='margin-left:2%;'><img src='img/profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-right'>"+parse_data[i].time+"</span></div>";
 					if( parse_data[i].sender_id == parse_data[1].user_id)
-						msg += "<div class='container darker' style='margin-left:45%;'><img src='profile_imgs/"+parse_data[1].prof_img+"'  class='right' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-left'>"+parse_data[i].time+"</span></div>";
+						msg += "<div class='container darker' style='margin-left:45%;'><img src='img/profile_imgs/"+parse_data[1].prof_img+"'  class='right' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-left'>"+parse_data[i].time+"</span></div>";
 				}
 				$("#box4").empty();
 				$("#box4").append(msg);
@@ -121,9 +121,9 @@
 				var parse_data = JSON.parse(data);
 				for( i=2;i<parse_data.length;i++ ) {
 					if( parse_data[i].sender_id == receiver_id )
-						msg += "<div class='container' style='margin-left:2%;'><img src='profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-right'>"+parse_data[i].time+"</span></div>";
+						msg += "<div class='container' style='margin-left:2%;'><img src='img/profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-right'>"+parse_data[i].time+"</span></div>";
 					if( parse_data[i].sender_id == parse_data[1].user_id)
-						msg += "<div class='container darker' style='margin-left:45%;'><img src='profile_imgs/"+parse_data[0].prof_img+"'  class='right' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-left'>"+parse_data[i].time+"</span></div>";
+						msg += "<div class='container darker' style='margin-left:45%;'><img src='img/profile_imgs/"+parse_data[0].prof_img+"'  class='right' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-left'>"+parse_data[i].time+"</span></div>";
 				}
 				$("#box4").append(msg);
 			},
@@ -135,6 +135,10 @@
 	
 	function sendmsg(receiver_id) {
 		var message = $("#msg").val();
+		
+		if( message == "" )
+			return;
+			
 		datatosend = 'msg='+message+'&rid='+receiver_id;
 		console.log(datatosend);
 		$.ajax({
@@ -166,7 +170,7 @@
 							contacts_html += "<div class='pelement1' style='background:blue;'></div>";
 						else
 							contacts_html += "<div class='pelement1' style='background:green;'></div>";
-						contacts_html += "<div class='pelement2'><img src='profile_imgs/"+parse_data[i].prof_img+"' style='width:100%;height:100%;'></div><div class='pelement3'><h1>"+parse_data[i].username+"</h1></div>";
+						contacts_html += "<div class='pelement2'><img src='img/profile_imgs/"+parse_data[i].prof_img+"' style='width:100%;height:100%;'></div><div class='pelement3'><h1>"+parse_data[i].username+"</h1></div>";
 						if( parse_data[i].msg_count!=null)
 						contacts_html += "<div class='pelement4'><h1>"+parse_data[i].msg_count+"</h1></div></li>";
 					}

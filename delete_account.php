@@ -3,7 +3,7 @@
 	session_start();
 	
 	$sql = "delete from users where user_id=".$_SESSION["usr_id"];
-	echo $sql;
+	//echo $sql;
 	mysqli_query($conn, $sql);
 	
 	unset($_SESSION["usr_id"]); 

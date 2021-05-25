@@ -9,7 +9,7 @@
 <body>
 <center>
 <h2>SIGN-UP</h2>
- <form id="signup" action="success.php" method="post">
+ <form id="signup" action="success.php" method="post" enctype="multipart/form-data">
  Name:
  <input type="text" placeholder="Name" id="uname" name="uname" required>
  <br><br>

@@ -27,7 +27,7 @@
 				$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 				
 				echo "
-				<img src=\"profile_imgs/{$row["prof_img"]}\" style=\"width:100%;height:100%;\">
+				<img src=\"img/profile_imgs/{$row["prof_img"]}\" style=\"width:100%;height:100%;\">
 			</div>
 			<div class=\"subelement12\">
 				<h1>{$row["username"]}</h1>";
