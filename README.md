@@ -1,6 +1,6 @@
 # CHAT APPLICATION
 This is a simple Chat application written in php, javascript and ajax
-
+![chat_screenshot](https://github.com/yogeeswar2001/chat-application/blob/main/img/images/chatapp_screenshot.png)
 ### WORKING
 This works based on polling, every 5 seconds it checks for new message in database new messages are returned to the user
 
