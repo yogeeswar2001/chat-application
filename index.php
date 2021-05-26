@@ -1,20 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <head>
 <title>
+	chat
 </title>
+
+<link rel="stylesheet" href="css/index.css">
+<script src="js/index.js"></script>
+
 </head>
-<body>
-<center>
-  <h2>LOGIN</h2>
- <form id="login" name="login" action="login.php" id="login" method="post">
- <input type="text" placeholder="username" id="uname" name="uname" required> 
- <br><br>
- <input type="password" placeholder="password" id="pass" name="pass" required> 
- <br><br>
- <input type="submit" value="login">
- <br><br>
- <a href="signup.php">register here</a>
- </form>
- </center>
+<body onload="hidesignup();">
+    <div class="container">
+      
+      <div class="login" id="login_btn" onclick="hidesignup()">LOG IN</div>
+      <div class="signup" id="signup_btn" onclick="hidelogin()">SIGN UP</div>
+      
+      <div class="login-form" id="login_form">
+          <form id="login" name="login" action="login.php" id="login" method="post">
+			<input type="text" placeholder="username" class="input" id="login-uname" name="uname" required><br>
+ 			<input type="password" placeholder="password" class="input" id="pass" name="pass" required><br>
+ 			<input type="submit" value="LOG IN" class="btn"><br>
+ 		  </form>
+        <center><span><a href="#"> FORGOT PASSWORD </a></span></center>
+       </div>
+      
+       <div class="signup-form" id="signup_form">
+       		<form id="signup" action="success.php" method="post" enctype="multipart/form-data">
+				<input type="text" placeholder="Name" class="input" id="signup-uname" name="uname" required><br>
+				<input type="text" placeholder="Email" class="input" id="email" name="email" required><br>
+				<input type="password" placeholder="Password" class="input" id="pwd" name="pwd" required><br>
+				<input type="password" placeholder="retype password" class="input" id="rpwd" name="rpwd" required><br>
+				profile picture: <input type="file" name="file" placeholder="profile picture"/><br>
+				<input type="submit" value="CREATE ACCOUNT" name="signup" class="btn">
+			</form>
+       </div>      
+    </div>
 </body>
 </html>
