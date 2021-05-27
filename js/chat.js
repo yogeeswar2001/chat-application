@@ -72,7 +72,6 @@
 			datatype: 'json',
 			success: function(data) {
 				var parse_data = JSON.parse(data);
-				
 				var box3_html = "";
 				if(parse_data[0].is_active == 0 )
 					box3_html += "<div class='subelement31' style='background:blue'></div>";
@@ -112,11 +111,12 @@
 			data: datatosend,
 			success: function(data) {
 				var parse_data = JSON.parse(data);
+				console.log(parse_data);
 				for( i=2;i<parse_data.length;i++ ) {
 					if( parse_data[i].sender_id == receiver_id )
 						msg += "<div class='container' style='margin-left:2%;'><img src='img/profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-right'>"+parse_data[i].time+"</span></div>";
 					if( parse_data[i].sender_id == parse_data[1].user_id)
-						msg += "<div class='container darker' style='margin-left:45%;'><img src='img/profile_imgs/"+parse_data[0].prof_img+"'  class='right' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-left'>"+parse_data[i].time+"</span></div>";
+						msg += "<div class='container darker' style='margin-left:45%;'><img src='img/profile_imgs/"+parse_data[1].prof_img+"'  class='right' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-left'>"+parse_data[i].time+"</span></div>";
 				}
 				$("#box4").append(msg);
 			},

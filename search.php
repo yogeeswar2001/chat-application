@@ -2,16 +2,17 @@
 	session_start();
 		
 	include_once 'include/check_user.php';
-	include_once "db/db_conn.php";
+	include_once "db/db_conn_pdo.php";
 	
-	$key = $_POST["key"];
+	$key = "{$_POST["key"]}%";
 	
-	$sql = "select user_id,username,prof_img,is_active from users where username like '".$key."%'";
-	//echo $sql;
-	$result = mysqli_query($conn, $sql);
-	if( mysqli_num_rows($result)>0 ) {
+	$sql = "select user_id,username,prof_img,is_active from users where username like ?";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([$key]);
+
+	if( $stmt->rowCount() ) {
 		$data = array();
-		while( $row = mysqli_fetch_object($result) ) {
+		while( $row = $stmt->fetch(PDO::FETCH_OBJ) ) {
 			array_push($data, $row);
 		}
 		echo json_encode($data);
