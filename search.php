@@ -1,7 +1,8 @@
 <?php
-	include_once "db_conn.php";
-	
 	session_start();
+		
+	include_once 'include/check_user.php';
+	include_once "db/db_conn.php";
 	
 	$key = $_POST["key"];
 	

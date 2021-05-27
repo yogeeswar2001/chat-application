@@ -5,7 +5,7 @@ function hidelogin() {
 	var signup_btn = document.getElementById("signup_btn");
 	
 	login.style.display = "none";
-	login_btn.style.backgroundColor = "transparent";
+	login_btn.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
 	signup.style.display = "block";
 	signup_btn.style.backgroundColor = "#fff";
 }	
@@ -17,7 +17,7 @@ function hidesignup() {
 	var signup_btn = document.getElementById("signup_btn");
 	
 	signup.style.display = "none";
-	signup_btn.style.backgroundColor = "transparent";
+	signup_btn.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
 	login.style.display = "block";
 	login_btn.style.backgroundColor = "#fff";
 }

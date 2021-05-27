@@ -1,15 +1,18 @@
 <?php
-	include_once 'db_conn.php';
 	session_start();
 	
-	$sql = "delete from users where user_id=".$_SESSION["usr_id"];
+	include_once 'include/check_user.php';
+	include_once 'db/db_conn_pdo.php';
+	
+	$sql = "delete from users where user_id= ?";
 	//echo $sql;
-	mysqli_query($conn, $sql);
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([$_SESSION["usr_id"]]);
 	
 	unset($_SESSION["usr_id"]); 
 	session_unset();
 	session_destroy();
 
-	mysqli_close($conn);
+	$conn = null;
 	header("location: index.php");
 ?>

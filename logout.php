@@ -1,14 +1,16 @@
 <?php
 	session_start();
+		
+	include_once 'include/check_user.php';
+	include_once 'db/db_conn_pdo.php';
 	
-	include_once 'db_conn.php';
-	
-	$sql="update users set is_active=0 where user_id=".$_SESSION["usr_id"];
-	mysqli_query($conn,$sql);
+	$sql="update users set is_active=0 where user_id= ?";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute([$_SESSION["usr_id"]]);
 	
 	unset($_SESSION["usr_id"]); 
 	session_unset();
 
-	mysqli_close($conn);
+	$conn = null;
 	header("location: index.php");
 ?>

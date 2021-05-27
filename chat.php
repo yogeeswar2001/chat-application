@@ -1,6 +1,10 @@
 <?php
+	//include_once "include/check_user.php";
 	session_Start();
-	include_once "db_conn.php";
+	
+	if( !isset($_SESSION["usr_id"]) )
+		header("location:index.php");
+	include_once "db/db_conn.php";
 ?>
 
 <!DOCTYPE html>

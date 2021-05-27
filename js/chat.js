@@ -8,7 +8,6 @@
 	
 	function exit_search() {
 		contact_poll();
-		//console.log("yogi",contact_poll_id);
 		if(contact_poll_id == null )
 			contact_poll_id = setInterval(contact_poll, 5000);
 		document.getElementById("search").value = "";
@@ -63,7 +62,6 @@
 		}
 		
 		document.getElementById('send_button').setAttribute('onclick','sendmsg('+receiver_id+')');
-		console.log(receiver_id,timeout_id,"timeout");
 		
 		datatosend = 'rid='+receiver_id;
 		$.ajax({
@@ -73,7 +71,6 @@
 			async: true,
 			datatype: 'json',
 			success: function(data) {
-				//console.log(data);
 				var parse_data = JSON.parse(data);
 				
 				var box3_html = "";
@@ -100,24 +97,20 @@
 		
 		//newmsg(receiver_id);
 		if( timeout_id ) {
-			console.log(timeout_id,"yogeeswar");
 			clearInterval(timeout_id);
 		}
 		timeout_id = setInterval("newmsg("+receiver_id+")",5000);
-		//console.log("id",timeout_id);
 	}
 	
 	function newmsg(receiver_id) {
 		var datatosend = 'rid='+receiver_id;
 		msg = "";
-		console.log(datatosend);
 		$.ajax({
 			url: 'newmsg.php',
 			type: 'POST',
 			datatype: 'json',
 			data: datatosend,
 			success: function(data) {
-				//console.log(data);
 				var parse_data = JSON.parse(data);
 				for( i=2;i<parse_data.length;i++ ) {
 					if( parse_data[i].sender_id == receiver_id )
@@ -140,7 +133,6 @@
 			return;
 			
 		datatosend = 'msg='+message+'&rid='+receiver_id;
-		console.log(datatosend);
 		$.ajax({
 			url:'sendmsg.php',
 			type:'POST',
@@ -148,7 +140,6 @@
 			async:true,
 			success:function(data) {
 				//document.getElementById("yourmsg").innerHTML=data[0];
-				console.log(data);
 			},
 		});
 		$("#msg").val("");
@@ -160,7 +151,6 @@
 			type: 'POST',
 			datatype: 'json',
 			success: function(data) {
-				//console.log("contact_poll",data);
 				var parse_data = JSON.parse(data);
 				var contacts_html = "";
 				if( parse_data[0] != "" ) {

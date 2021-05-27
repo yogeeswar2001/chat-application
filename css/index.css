@@ -15,7 +15,7 @@ body{
 .signup,
 .login{
   width: 50%;
-  background: #fff;
+  background: #ff3333;
   float: left;
   height: 60px;
   line-height: 60px;
@@ -30,7 +30,7 @@ body{
   clear: both;
   width: 100%;
   box-sizing: border-box;
-  height: 400px;
+  height: 360px;
 }
 
 .signup-form {
