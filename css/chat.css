@@ -155,7 +155,7 @@ ul {
 .vertical-menu li .pelement1{grid-area:pbox1;}
 .vertical-menu li .pelement2{grid-area:pbox2;}
 .vertical-menu li .pelement3{grid-area:pbox3;}
-.vertical-menu li .pelement4{grid-area:pbox4;}
+.vertical-menu li .pelement4{grid-area:pbox4;background-color:#ADFF2F;text-align:center;border-radius:50%;height:50%;margin-top:50%;margin-right:5%;}
 
 .vertical-menu li:hover {
   background-color: #ccc;

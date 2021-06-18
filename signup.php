@@ -1,7 +1,7 @@
 <?php
 	include_once 'db/db_conn_pdo.php';
 	
-	if(isset( $_POST["signupbtn"] ) {
+	if(isset( $_POST["signupbtn"] ) ) {
 		$sql="";
 
 		$uname=$_POST["uname"];
@@ -55,6 +55,7 @@
 		 		
 		 	$stmt = $conn->prepare($sql);
 		 	$stmt->execute([$uname, $hash, $email, $file_name]);
+		 	header("location:index.php");
 	   	}
 		else 
 			echo "Your password does not macth";

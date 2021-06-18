@@ -111,7 +111,7 @@
 			data: datatosend,
 			success: function(data) {
 				var parse_data = JSON.parse(data);
-				console.log(parse_data);
+				//console.log(parse_data);
 				for( i=2;i<parse_data.length;i++ ) {
 					if( parse_data[i].sender_id == receiver_id )
 						msg += "<div class='container' style='margin-left:2%;'><img src='img/profile_imgs/"+parse_data[0].prof_img+"' style='width:100%;'><p>"+parse_data[i].msg+"</p><span class='time-right'>"+parse_data[i].time+"</span></div>";

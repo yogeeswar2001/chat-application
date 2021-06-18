@@ -11,14 +11,14 @@
 <body onload="hidesignup();">
     <div class="container">
       
-      <div class="login" id="login_btn" onclick="hidesignup()">LOG IN</div>
+      <div class="login" id="login_btn" onclick="hidesignup()">LOGIN</div>
       <div class="signup" id="signup_btn" onclick="hidelogin()">SIGN UP</div>
       
       <div class="login-form" id="login_form">
           <form id="login" name="login" action="login.php" id="login" method="post">
 			<input type="text" placeholder="username" class="input" id="login-uname" name="uname" required><br>
  			<input type="password" placeholder="password" class="input" id="pass" name="pass" required><br>
- 			<input type="submit" value="LOG IN" name="loginbtn" class="btn"><br>
+ 			<input type="submit" value="LOGIN" name="loginbtn" class="btn"><br>
  		  </form>
         <center><span><a href="#"> FORGOT PASSWORD </a></span></center>
        </div>

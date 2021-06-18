@@ -26,21 +26,12 @@
 	$stmt = $conn->prepare($sql);
 	$stmt->execute([$_SESSION["usr_id"], $r_id, $r_id, $_SESSION["usr_id"]]);
 	
-	$upsql = "update messages 
-			set sender_flag = 0x00 where
-			(CASE
-			when sender_id= ?
-			then receiver_id= ?
-			END)";
+	$upsql = "update messages set sender_flag = 0x00 where sender_id= ? and receiver_id= ?";
+			
 	$stmt_update = $conn->prepare($upsql);
 	$stmt_update->execute([$_SESSION["usr_id"], $r_id]);
 	
-	$upslt = "update messages 
-			set receiver_flag = 0x00 where
-			(CASE
-			when sender_id=".$r_id."
-			then receiver_id=".$_SESSION["usr_id"]."
-			END)";
+	$upslt = "update messages set receiver_flag = 0x00 where sender_id= ? and receiver_id= ?";
 	$stmt_update = $conn->prepare($upslt);
 	$stmt_update->execute([$r_id, $_SESSION["usr_id"]]);
 		
